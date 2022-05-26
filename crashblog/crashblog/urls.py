@@ -25,8 +25,9 @@ sitemaps = {'category': CategorySitemap, 'post': PostSitemap}
 
 urlpatterns = [
                   path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
-                  path('robots.txt', robots_txt, name='robots_text'),
+                  path('robots.txt', robots_txt, name='robots_txt'),
                   path('admin/', admin.site.urls),
+                  path('ckeditor/', include('ckeditor_uploader.urls')),
                   path('about/', about, name='about'),
                   path('', frontpage, name='frontpage'),
                   path('', include('blog.urls'))
