@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<section class="hero ">
+    <div class="hero-body">
+        <div class="container">
+            <div class="section">
+                <div class="columns">
+                    <div class="column is-5 is-offset-1 ">
+                        {% for post in posts %}
+                        <div class="content is-medium">
+                            <a href="{% url 'post_detail' post.category.slug post.slug %}">
+                                <h2 class="subtitle is-5 has-text-grey">{{ post.created_at|timesince }} ago</h2>
+                                <h1 class="title has-text-black is-3">{{ post.title }}</h1>
+                                {% if post.image %}
+                                    <figure class="image">
+                                        <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                                    </figure>
+                                {% endif %}
+                                <p class="has-text-dark">
+                                    {{ post.intro }}
+                                </p>
+                            </a>
+                        </div>
+                        {% empty %}
+                            <div class="content">
+                                <h2>Sorry...No posts in this blog yet.</h2>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

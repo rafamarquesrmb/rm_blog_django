@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %} | Crash Blog</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.3/css/bulma.min.css"/>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+
+        nav.navbar {
+            height: 6rem !important;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06) !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- START NAV -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    <strong>Crash Blog</strong>
+                </a>
+                <span class="navbar-burger burger" data-target="navbarMenu">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+            </div>
+            <div id="navbarMenu" class="navbar-menu">
+                <div class="navbar-end">
+                    <div class=" navbar-item">
+                        <form method="get" action="{% url 'search' %}">
+                            <div class="control has-icons-left">
+                                <input name="query" class="input is-rounded" type="text" placeholder="Search">
+                                <span class="icon is-left">
+                                <i class="fa fa-search"></i>
+                              </span>
+                            </div>
+                        </form>
+                    </div>
+                    <a href="/" class="navbar-item is-active is-size-5 has-text-weight-semibold">
+                        Home
+                    </a>
+                    <a href="{% url 'about' %}" class="navbar-item is-size-5 has-text-weight-semibold">
+                        About
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- END NAV -->
+    <!-- START SECTION -->
+    <section class="section">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </section>
+    <!-- END SECTION -->
+    <!-- START FOOTER -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Copyright Ⓒ 2022 - Crash Blog</strong>
+            </p>
+        </div>
+    </footer>
+    <!-- END FOOTER -->
+</body>
+</html>
