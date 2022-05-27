@@ -31,7 +31,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField()
     intro = models.TextField()
-    body = RichTextUploadingField(blank=True, null=True,config_name='default')
+    body = RichTextUploadingField(blank=True, null=True, config_name='default')
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=COICHES_STATUS, default=ACTIVE)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
