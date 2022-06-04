@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import CategorySitemap, PostSitemap
-from core.views import frontpage, about, robots_txt, error_404_view
+from core.views import frontpage, about, robots_txt, error_404_view, contact
 
 sitemaps = {'category': CategorySitemap, 'post': PostSitemap}
 
@@ -29,8 +29,9 @@ urlpatterns = [
                   path('admin/', admin.site.urls),
                   path('ckeditor/', include('ckeditor_uploader.urls')),
                   path('about/', about, name='about'),
+                  path('contact/', contact, name='contact'),
                   path('', frontpage, name='frontpage'),
-                  path('', include('blog.urls'))
+                  path('blog/', include('blog.urls'))
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = error_404_view

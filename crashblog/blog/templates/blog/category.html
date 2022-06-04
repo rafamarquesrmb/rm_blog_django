@@ -1,42 +1,54 @@
 {% extends 'core/base.html' %}
+{% load static %}
 {% block title %}
-{{ category.title }}
+    {{ category.title }}
 {% endblock %}
+{% block meta %}{{ category.meta_description }}{% endblock %}
 
 {% block content %}
 
-<section class="hero ">
-    <div class="hero-body">
-        <div class="container">
-            <div class="section">
-                <div class="columns">
-                    <div class="column is-5 is-offset-1 ">
-                        {% for post in posts %}
-                        <div class="content is-medium">
-                            <a href="{% url 'post_detail' post.category.slug post.slug %}">
-                                <h2 class="subtitle is-5 has-text-grey">{{ post.created_at|timesince }} ago</h2>
-                                <h1 class="title has-text-black is-3">{{ post.title }}</h1>
-                                {% if post.image %}
-                                    <figure class="image">
-                                        <img src="{{ post.image.url }}" alt="{{ post.title }}">
-                                    </figure>
-                                {% endif %}
-                                <p class="has-text-dark">
-                                    {{ post.intro }}
-                                </p>
-                            </a>
-                        </div>
-                        {% empty %}
-                            <div class="content">
-                                <h2>Sorry...No posts in this category yet.</h2>
-                                <a href="{% url 'frontpage' %}">Go back to home!</a>
-                            </div>
-                        {% endfor %}
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('{% static 'assets/img/home-bg.jpg' %}')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>{{ category.title }}</h1>
+                        <span class="subheading">A Blog Theme by Start Bootstrap</span>
                     </div>
                 </div>
             </div>
         </div>
+    </header>
+    <!-- Main Content-->
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                {% for post in posts %}
+                    <!-- Post preview-->
+                    <div class="post-preview">
+                        <a href="{% url 'post_detail' post.category.slug post.slug %}">
+                            <h2 class="post-title">{{ post.title }}</h2>
+                            <h3 class="post-subtitle">{{ post.intro|striptags|slice:":85" }}...</h3>
+                        </a>
+                        <p class="post-meta">
+                            Posted on {{ post.created_at| date }} | Category: <a
+                                href="{% url 'category_detail' post.category.slug %}">{{ post.category.title }}</a>
+                        </p>
+                    </div>
+                    <!-- Divider-->
+                    <hr class="my-4"/>
+                {% empty %}
+                    <div class="content">
+                        <h2>Sorry...We don't find any post with that query</h2>
+                    </div>
+                {% endfor %}
+
+                <!-- Pager-->
+                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older
+                    Posts →</a></div>
+            </div>
+        </div>
     </div>
-</section>
 
 {% endblock %}

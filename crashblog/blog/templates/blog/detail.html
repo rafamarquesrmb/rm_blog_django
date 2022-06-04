@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load static %}
 {% block headercss %}
 
     <style>
@@ -16,6 +17,7 @@
             padding: 1em;
             border-radius: 6px;
         }
+
         .hljs-comment, .hljs-meta {
             color: #565f89
         }
@@ -74,68 +76,131 @@
 {% block title %}
     {{ post.title }}
 {% endblock %}
-
+{% block meta %}{{ post.meta_description }}{% endblock %}
 {% block content %}
-    <section class="hero">
-        <div class="hero-body">
-            <div class="container">
-                <section class="section">
-                    {% if post.image %}
-                        <figure class="image mb-6">
-                            <img src="{{ post.image.url }}" alt="{{ post.title }}">
-                        </figure>
-                    {% endif %}
-                    <div class="columns">
-                        <div class="column is-8 is-offset-2">
-                            <div class="content is-medium">
-                                <h2 class="subtitle is-5 has-text-grey">{{ post.created_at|timesince }} ago</h2>
-                                <h1 class="title has-text-black is-3">{{ post.title }}</h1>
-                                <p class="has-text-dark">
-                                    {{ post.intro }}
-                                </p>
-                                <p>
-                                    {{ post.body | safe }}
-                                </p>
-                                <p><small>
-                                    Category: <a
-                                        href="{% url 'category_detail' post.category.slug %}">{{ post.category }}</a>
-                                </small></p>
-                                <hr>
-                                <h2 class="subtitle is-4">Comments</h2>
-                                <form method="post mb-6">
-                                    {% csrf_token %}
-                                    {{ form.as_p }}
-                                    <div class="field">
-                                        <div class="control">
-                                            <button class="button is-success">Submit Comment</button>
-                                        </div>
-                                    </div>
-                                </form>
 
-                                {% for comment in post.comments.all %}
-                                    <article class="media box">
-                                        <div class="media-content">
-                                            <strong>{{ comment.name }}</strong>
-                                            <small>{{ comment.created_at|timesince }} ago</small>
-                                            {{ comment.body }}
+<!-- Page Header-->
+{% if post.image %}
+<header class="masthead" style="background-image: url('{{ post.image.url }}')">
+{% else %}
+<header class="masthead" style="background-image: url('{% static 'assets/img/home-bg.jpg' %}')">
+{% endif %}
 
-                                        </div>
-                                    </article>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </section>
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>{{ post.title }}</h1>
+                    <h2 class="subheading">{{ post.intro }}</h2>
+                    <span class="meta">
+                        Posted on {{ post.created_at| date }} | Category: <a
+                        href="{% url 'category_detail' post.category.slug %}">{{ post.category.title }}</a>
+                    </span>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</header>
+<!-- Post Content-->
+<main>
+    <article class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    {{ post.body | safe }}
+                </div>
+            </div>
+        </div>
+    </article>
+</main>
 
-    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-          document.querySelectorAll('pre').forEach((el) => {
+
+    <!-- Comments -->
+
+    <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+
+                <div class="col-md-10 col-lg-8 col-xl-7 ">
+
+                    <!-- Divider-->
+                    <hr class="my-5"/>
+
+                    <h2>Comments</h2>
+                    <p>If you would like to leave a comment on this post, please fill out and submit the form below!</p>
+                    <div class="my-2">
+                        <form id="CommentForm" method="POST">
+                            {% csrf_token %}
+                            <div class="form-floating">
+                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." required/>
+                                <label for="name">Name</label>
+                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                            </div>
+                            <div class="form-floating">
+                                <input class="form-control" id="email" type="email" placeholder="Enter your email..." required/>
+                                <label for="email">Email</label>
+                                <div class="invalid-feedback" data-sb-feedback="name:required">An email is required.</div>
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control" id="body" placeholder="Enter your comment here..."
+                                          style="height: 6rem" required></textarea>
+                                <label for="body">Your comment</label>
+                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is
+                                    required.
+                                </div>
+                            </div>
+                            <br/>
+                            <!-- Submit success message-->
+                            <!---->
+                            <!-- This is what your users will see when the form-->
+                            <!-- has successfully submitted-->
+                            <div class="d-none" id="submitSuccessMessage">
+                                <div class="text-center mb-3">
+                                    <div class="fw-bolder">Form submission successful!</div>
+                                    To activate this form, sign up at
+                                    <br/>
+                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                </div>
+                            </div>
+                            <!-- Submit error message-->
+                            <!---->
+                            <!-- This is what your users will see when there is-->
+                            <!-- an error submitting the form-->
+                            <div class="d-none" id="submitErrorMessage">
+                                <div class="text-center text-danger mb-3">Error sending message!</div>
+                            </div>
+                            <!-- Submit Button-->
+                            <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">
+                                Send
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="my-5">
+                        <!-- Divider-->
+                    <hr class="my-5"/>
+                    <h2>Discussion</h2>
+                        {% for comment in post.comments.all %}
+                            <div class="comment-detail">
+                                <p class="comment-message">{{ comment.body }}</p>
+                                <p class="posted-by">
+                                    Posted by {{ comment.name }} on {{ comment.created_at| date }}
+                                </p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre').forEach((el) => {
             hljs.highlightElement(el);
-          });
         });
-    </script>
+    });
+</script>
 {% endblock %}

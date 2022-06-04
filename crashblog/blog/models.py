@@ -5,7 +5,8 @@ from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 
 class Category(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=60)
+    meta_description = models.CharField(max_length=155)
     slug = models.SlugField()
 
     class Meta:
@@ -28,7 +29,8 @@ class Post(models.Model):
     )
 
     category = models.ForeignKey(Category, related_name='posts', on_delete=models.CASCADE)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=60)
+    meta_description = models.CharField(max_length=155)
     slug = models.SlugField()
     intro = models.TextField()
     body = RichTextUploadingField(blank=True, null=True, config_name='default')

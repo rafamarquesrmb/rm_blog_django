@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-b)3n(4uuv6a6)8hpu&k@8vd14%x-0!my70it%2l&o+piu%u7gk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 
@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 

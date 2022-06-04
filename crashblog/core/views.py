@@ -6,7 +6,7 @@ from blog.models import Post
 
 # Create your views here.
 def frontpage(request):
-    posts = Post.objects.filter(status=Post.ACTIVE)
+    posts = Post.objects.filter(status=Post.ACTIVE)[:3]
     return render(request, 'core/frontpage.html', {'posts': posts})
 
 
@@ -20,6 +20,9 @@ def robots_txt(request):
         "Disallow: /admin/",
     ]
     return HttpResponse("\n".join(text), content_type="text/plain")
+
+def contact(request):
+    return render(request, 'core/contact.html')
 
 def error_404_view(request, exception):
     return render(request, 'core/404.html')
