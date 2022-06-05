@@ -1,4 +1,4 @@
-"""crashblog URL Configuration
+"""rmblog URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.2/topics/http/urls/
@@ -13,13 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
+from core.views import about, contact, error_404_view, frontpage, robots_txt
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
+from django.urls import include, path
+
 from .sitemaps import CategorySitemap, PostSitemap
-from core.views import frontpage, about, robots_txt, error_404_view, contact
 
 sitemaps = {'category': CategorySitemap, 'post': PostSitemap}
 
