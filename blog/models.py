@@ -1,5 +1,5 @@
-from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.db import models
 
 
 # Create your models here.
@@ -61,3 +61,20 @@ class Comment(models.Model):
     def __str__(self):
         return_str = 'by ' + self.name + ' | at: ' + self.post.title
         return return_str
+
+
+class Tag(models.Model):
+    title = models.CharField(max_length=60)
+    meta_description = models.CharField(max_length=155)
+    slug = models.SlugField()
+    posts = models.ManyToManyField("Post", related_name="tags")
+
+    class Meta:
+        ordering = ('title',)
+        verbose_name_plural = 'Tags'
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return '/%s/' % self.slug

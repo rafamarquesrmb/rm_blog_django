@@ -1,15 +1,28 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import CommentForm
 # Create your views here.
-from .models import Category, Post
+from .models import Category, Post, Tag
 
 
 def blog(request):
+    page = request.GET.get('page', '1')
+    page_limit = request.GET.get('limit', '2')
+
+    if not (page_limit.isdigit() and int(page_limit) > 0):
+        page_limit = '2'
+
     posts = Post.objects.filter(status=Post.ACTIVE)
-    return render(request, 'blog/blog.html', {'posts': posts})
+    posts_paginator = Paginator(posts, page_limit)
+    try:
+        posts_paginated = posts_paginator.page(page)
+    except (EmptyPage, PageNotAnInteger):
+        return redirect('blog')
+
+    return render(request, 'blog/blog.html', {'posts': posts_paginated})
 
 
 def detail(request, category_slug, slug):
@@ -31,6 +44,12 @@ def category(request, slug):
     category_selected = get_object_or_404(Category, slug=slug)
     posts = category_selected.posts.filter(status=Post.ACTIVE)
     return render(request, 'blog/category.html', {'category': category_selected, 'posts': posts})
+
+
+def tags(request, slug):
+    tag_selected = get_object_or_404(Tag, slug=slug)
+    posts = tag_selected.posts.filter(status=Post.ACTIVE)
+    return render(request, 'blog/tags.html', {'tag': tag_selected, 'posts': posts})
 
 
 def search(request):
