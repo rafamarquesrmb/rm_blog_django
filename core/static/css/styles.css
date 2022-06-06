@@ -4020,7 +4020,7 @@ textarea.form-control-lg {
 
 .navbar-toggler {
   padding: 0.25rem 0.75rem;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 1;
   background-color: transparent;
   border: 1px solid transparent;
@@ -11049,10 +11049,11 @@ blockquote {
   font-weight: 800;
 }
 #mainNav .navbar-toggler {
-  font-size: 0.75rem;
+  font-size: 1.5rem;
   font-weight: 800;
   padding: 0.75rem;
   text-transform: uppercase;
+  color: rgba(var(--bs-primary-rgb));
 }
 #mainNav .navbar-nav > li.nav-item > a.nav-link {
   font-size: 0.75rem;

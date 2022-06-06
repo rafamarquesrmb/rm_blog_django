@@ -9,19 +9,8 @@ from .models import Category, Post, Tag
 
 
 def blog(request):
-    page = request.GET.get('page', '1')
-    page_limit = request.GET.get('limit', '2')
-
-    if not (page_limit.isdigit() and int(page_limit) > 0):
-        page_limit = '2'
-
     posts = Post.objects.filter(status=Post.ACTIVE)
-    posts_paginator = Paginator(posts, page_limit)
-    try:
-        posts_paginated = posts_paginator.page(page)
-    except (EmptyPage, PageNotAnInteger):
-        return redirect('blog')
-
+    posts_paginated = pagination(request, posts)
     return render(request, 'blog/blog.html', {'posts': posts_paginated})
 
 
@@ -43,17 +32,34 @@ def detail(request, category_slug, slug):
 def category(request, slug):
     category_selected = get_object_or_404(Category, slug=slug)
     posts = category_selected.posts.filter(status=Post.ACTIVE)
-    return render(request, 'blog/category.html', {'category': category_selected, 'posts': posts})
+    posts_paginated = pagination(request, posts)
+    return render(request, 'blog/category.html', {'category': category_selected, 'posts': posts_paginated})
 
 
 def tags(request, slug):
     tag_selected = get_object_or_404(Tag, slug=slug)
     posts = tag_selected.posts.filter(status=Post.ACTIVE)
-    return render(request, 'blog/tags.html', {'tag': tag_selected, 'posts': posts})
+    posts_paginated = pagination(request, posts)
+    return render(request, 'blog/tags.html', {'tag': tag_selected, 'posts': posts_paginated})
 
 
 def search(request):
     query = request.GET.get('query', '')
     posts = Post.objects.filter(Q(title__icontains=query) | Q(intro__icontains=query) | Q(body__icontains=query),
                                 status=Post.ACTIVE)
-    return render(request, 'blog/search.html', {'posts': posts, 'query': query})
+    posts_paginated = pagination(request, posts)
+    return render(request, 'blog/search.html', {'posts': posts_paginated, 'query': query})
+
+
+#UTIL
+def pagination(request, posts):
+    page = request.GET.get('page', '1')
+    page_limit = request.GET.get('limit', '10')
+
+    if not (page_limit.isdigit() and int(page_limit) > 0):
+        page_limit = '10'
+    posts_paginator = Paginator(posts, page_limit)
+    try:
+        return posts_paginator.page(page)
+    except (EmptyPage, PageNotAnInteger):
+        return redirect('blog')

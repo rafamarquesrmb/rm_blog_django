@@ -3,7 +3,7 @@
 {% block title %}
     Blog
 {% endblock %}
-{% block meta %}Página Inicial do Blog{% endblock %}
+{% block meta %}A blog about Programming and technology.{% endblock %}
 
 {% block content %}
     <!-- Page Header-->
@@ -12,8 +12,8 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
-                        <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                        <h1>RM Blog</h1>
+                        <span class="subheading">A blog about Programming and technology.</span>
                     </div>
                 </div>
             </div>
@@ -23,6 +23,7 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
+
                 {% for post in posts %}
                     <!-- Post preview-->
                     <div class="post-preview">
@@ -38,7 +39,7 @@
                             {% endif %}
                             {% for tag in post.tags.all %}
                                 #<a
-                                href="{% url 'tag_detail' tag.slug %}">{{ tag.title }} </a>
+                                    href="{% url 'tag_detail' tag.slug %}">{{ tag.title }} </a>
                             {% endfor %}
                         </p>
                     </div>
@@ -50,9 +51,55 @@
                     </div>
                 {% endfor %}
 
-                <!-- Pager-->
-                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older
-                    Posts →</a></div>
+                <!-- Pagination-->
+                {% if posts.has_previous and posts.has_next %}
+                    <div class="row">
+                        <nav>
+                            <ul class="pagination pagination-lg d-flex justify-content-center mb-4">
+
+                                {% if posts.has_previous %}
+                                    <li class="page-item">
+                                        <a href="{% url 'blog' %}?page={{ posts.previous_page_number }}"
+                                           class="page-link">Previous</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <a href="#" class="page-link ">Previous</a>
+                                    </li>
+                                {% endif %}
+
+                                {% for page_number in posts.paginator.page_range %}
+                                    {% if page_number == posts.number %}
+                                        <li class="page-item active">
+                                            <a href="#" class="page-link">{{ page_number }}</a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item">
+                                            <a href="{% url 'blog' %}?page={{ page_number }}"
+                                               class="page-link">{{ page_number }}</a>
+                                        </li>
+                                    {% endif %}
+
+                                {% endfor %}
+
+
+
+
+                                {% if posts.has_next %}
+                                    <li class="page-item">
+                                        <a href="{% url 'blog' %}?page={{ posts.next_page_number }}"
+                                           class="page-link">Older Posts →</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <a href="#" class="page-link">Older Posts →</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                {% endif %}
+
             </div>
         </div>
     </div>
