@@ -21,6 +21,6 @@ Integrated with Highligh.js to include code in the post.
 
 All app administration must be done through django admin. The django admin is properly configured with CKEditor, allowing better writing and also the inclusion of attached files.
 
-It has a contact page (not yet configured in the backend...to do)
+It has a contact page!
 
 <sub>by [Rafael Marques @rafamarquesrmb](https://github.com/rafamarquesrmb)</sub>
