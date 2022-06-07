@@ -1,10 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from blog.models import Post
 
-
 # Create your views here.
+from core.email_service import send_contact_email
+from core.forms import MessageForm
+
+
 def frontpage(request):
     posts = Post.objects.filter(status=Post.ACTIVE)[:3]
     return render(request, 'core/frontpage.html', {'posts': posts})
@@ -21,8 +24,34 @@ def robots_txt(request):
     ]
     return HttpResponse("\n".join(text), content_type="text/plain")
 
+
 def contact(request):
-    return render(request, 'core/contact.html')
+    email_form = MessageForm()
+    context = {
+        'form': email_form,
+    }
+    if request.method == "POST":
+        email_form = MessageForm(request.POST)
+        if email_form.is_valid():
+            try:
+                send_contact_email(email_form)
+                email_form = MessageForm()
+                context = {
+                    'form': email_form,
+                    'form_success': True
+                }
+            except:
+                context = {
+                    'form': email_form,
+                    'form_success': False
+                }
+        else:
+            context = {
+                'form': email_form,
+                'form_success': False
+            }
+    return render(request, 'core/contact.html', context)
+
 
 def error_404_view(request, exception):
     return render(request, 'core/404.html')
