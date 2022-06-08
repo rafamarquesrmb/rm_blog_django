@@ -46,12 +46,12 @@
                 </li>
             </ul>
             <div class="search ps-lg-3">
-                <form action="{% url 'search' %}" method="get" class="d-flex my-3 my-lg-0 input-group-sm" role="search">
+                <form action="{% url 'search' %}" method="get" class="search__form d-flex my-3 my-lg-0 input-group-sm" role="search">
                     {% csrf_token %}
                     <input type="search"
-                           class="bg-white bg-opacity-25 text-primary border-end-0 form-control rounded-start"
+                           class="search__input bg-white bg-opacity-25 text-primary border-end-0 form-control rounded-start"
                            name="query" placeholder="Search...">
-                    <button class="btn btn-primary rounded-end"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="search__btn btn btn-primary rounded-end"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
         </div>
@@ -59,7 +59,6 @@
 </nav>
 
 <!-- START Content -->
-
 {% block content %}
 {% endblock %}
 

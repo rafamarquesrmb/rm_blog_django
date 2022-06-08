@@ -1,0 +1,47 @@
+{% if posts.has_previous or posts.has_next %}
+    <div class="row pb-5">
+        <nav>
+            <ul class=" pagination pagination-lg d-flex justify-content-center mb-4">
+
+                {% if posts.has_previous %}
+                    <li class="page-item">
+                        <a href="{% url 'blog' %}?page={{ posts.previous_page_number }}"
+                           class="page-link">Previous</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a href="#" class="page-link ">Previous</a>
+                    </li>
+                {% endif %}
+
+                {% for page_number in posts.paginator.page_range %}
+                    {% if page_number == posts.number %}
+                        <li class="page-item active">
+                            <a href="#" class="page-link">{{ page_number }}</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item">
+                            <a href="{% url 'blog' %}?page={{ page_number }}"
+                               class="page-link">{{ page_number }}</a>
+                        </li>
+                    {% endif %}
+
+                {% endfor %}
+
+
+
+
+                {% if posts.has_next %}
+                    <li class="page-item">
+                        <a href="{% url 'blog' %}?page={{ posts.next_page_number }}"
+                           class="page-link">Older Posts →</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a href="#" class="page-link">Older Posts →</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+{% endif %}

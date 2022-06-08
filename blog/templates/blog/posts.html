@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% block title %}
+    {{ page_title }}
+{% endblock %}
+{% block meta %}{{ page_metatitle }}{% endblock %}
+
+{% block content %}
+
+    {% include 'partials/posts_header_partial.html' with background_image_slug=banner_background_image_slug heading=banner_heading subheading=banner_subheading %}
+    {% include 'partials/posts_partial.html' with posts=posts %}
+
+{% endblock %}
+
+
+
