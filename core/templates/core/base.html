@@ -46,12 +46,14 @@
                 </li>
             </ul>
             <div class="search ps-lg-3">
-                <form action="{% url 'search' %}" method="get" class="search__form d-flex my-3 my-lg-0 input-group-sm" role="search">
+                <form action="{% url 'search' %}" method="get" class="search__form d-flex my-3 my-lg-0 input-group-sm"
+                      role="search">
                     {% csrf_token %}
                     <input type="search"
                            class="search__input bg-white bg-opacity-25 text-primary border-end-0 form-control rounded-start"
                            name="query" placeholder="Search...">
-                    <button class="search__btn btn btn-primary rounded-end"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="search__btn btn btn-primary rounded-end"><i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </form>
             </div>
         </div>
@@ -103,6 +105,22 @@
                     </li>
                 </ul>
                 <div class="small text-center text-muted fst-italic">Copyright &copy; Rafael Marques 2022</div>
+
+                <form id="news" action="{% url 'news_subscribe' %}" method="POST">
+                    {% csrf_token %}
+                    <h4>Subscribe to our Newsletter</h4>
+                    <div class="form-floating">
+                        <input name="email" class="form-control" id="email" type="email"
+                               placeholder="Enter your email..."
+                               required/>
+                        <label for="email">Email address</label>
+                    </div>
+                    <br/>
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">
+                        Subscribe!
+                    </button>
+                </form>
             </div>
         </div>
     </div>

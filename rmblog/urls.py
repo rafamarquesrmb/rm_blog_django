@@ -32,7 +32,8 @@ urlpatterns = [
                   path('about/', about, name='about'),
                   path('contact/', contact, name='contact'),
                   path('', frontpage, name='frontpage'),
-                  path('blog/', include('blog.urls'))
+                  path('blog/', include('blog.urls')),
+                  path('newsletter/', include('newsletter.urls'))
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = error_404_view
