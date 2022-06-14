@@ -5,9 +5,9 @@ from django.db import models
 # Create your models here.
 
 class Category(models.Model):
-    title = models.CharField(max_length=60)
-    meta_description = models.CharField(max_length=155)
-    slug = models.SlugField()
+    title = models.CharField(max_length=60, unique=True, null=False, blank=False)
+    meta_description = models.CharField(max_length=155, null=True, blank=True)
+    slug = models.SlugField(unique=True, null=False, blank=False)
 
     class Meta:
         ordering = ('title',)
@@ -28,16 +28,17 @@ class Post(models.Model):
         (DRAFT, 'Draft')
     )
 
-    category = models.ForeignKey(Category, related_name='posts', on_delete=models.CASCADE)
-    title = models.CharField(max_length=60)
-    meta_description = models.CharField(max_length=155)
-    slug = models.SlugField()
-    intro = models.TextField()
+    category = models.ForeignKey(Category, related_name='posts', on_delete=models.CASCADE, blank=False, null=False)
+    title = models.CharField(max_length=60, blank=False, unique=True, null=False)
+    meta_description = models.CharField(max_length=155, blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=False, null=False)
+    intro = models.TextField(blank=True)
     body = RichTextUploadingField(blank=True, null=True, config_name='default')
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=COICHES_STATUS, default=ACTIVE)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
-
+    tags = models.ManyToManyField("Tag", related_name="posts")
+    
     class Meta:
         ordering = ('-created_at',)
 
@@ -64,10 +65,9 @@ class Comment(models.Model):
 
 
 class Tag(models.Model):
-    title = models.CharField(max_length=60)
-    meta_description = models.CharField(max_length=155)
-    slug = models.SlugField()
-    posts = models.ManyToManyField("Post", related_name="tags")
+    title = models.CharField(unique=True, max_length=60, blank=False, null=False)
+    meta_description = models.CharField(max_length=155, blank=True, null=True)
+    slug = models.SlugField(unique=True, blank=False, null=False)
 
     class Meta:
         ordering = ('title',)
