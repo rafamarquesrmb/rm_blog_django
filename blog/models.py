@@ -1,5 +1,5 @@
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
+from tinymce.models import HTMLField
 
 
 # Create your models here.
@@ -33,7 +33,7 @@ class Post(models.Model):
     meta_description = models.CharField(max_length=155, blank=True, null=True)
     slug = models.SlugField(unique=True, blank=False, null=False)
     intro = models.TextField(blank=True)
-    body = RichTextUploadingField(blank=True, null=True, config_name='default')
+    body = HTMLField()
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=COICHES_STATUS, default=ACTIVE)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
