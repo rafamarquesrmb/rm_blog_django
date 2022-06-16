@@ -20,15 +20,15 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
 
-from .sitemaps import CategorySitemap, PostSitemap, TagSitemap
+from .sitemaps import CategorySitemap, PostSitemap
 
-sitemaps = {'tags': TagSitemap, 'category': CategorySitemap, 'post': PostSitemap}
+sitemaps = {'category': CategorySitemap, 'post': PostSitemap}
 
 urlpatterns = [
                   path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
                   path('robots.txt', robots_txt, name='robots_txt'),
                   path('admin/', admin.site.urls),
-                  path('tinymce/', include('tinymce.urls')),
+                  path('ckeditor/', include('ckeditor_uploader.urls')),
                   path('about/', about, name='about'),
                   path('contact/', contact, name='contact'),
                   path('', frontpage, name='frontpage'),

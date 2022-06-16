@@ -2,12 +2,7 @@ from django.contrib.sitemaps import Sitemap
 
 from django.shortcuts import reverse
 
-from blog.models import Category, Post, Tag
-
-
-class TagSitemap(Sitemap):
-    def items(self):
-        return Tag.objects.all()
+from blog.models import Category, Post
 
 
 class CategorySitemap(Sitemap):
