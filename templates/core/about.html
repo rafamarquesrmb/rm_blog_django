@@ -7,25 +7,24 @@
 
 {% block seotags %}
     <!-- OG tags -->
-    <meta property="og:title" content="RM Blog">
+    <meta property="og:title" content="About | RM Blog">
     <meta name="description" property="og:description" content="A blog about Programming and technology.">
     <!-- The common types are website, article, blog, company, and image -->
     <meta property="og:type" content="blog">
-    <!--    <meta property="og:image" content="https://...image.jpg"> -->
-    <!--    <meta property="og:image:alt" content="A picture of the mountains."> -->
-    <!--    <meta property="og:url" content="This is a description of the image."> -->
+    <meta property="og:image" content="{% static 'assets/images/blog/rm-blog.jpg' %}">
+    <meta property="og:image:alt" content="RM Blog | A blog about Programming and technology.">
+    <meta property="og:url" content="RM Blog | A blog about Programming and technology.">
     <!-- The Twitter card meta tag determines the type of card Twitter uses to display your link. The value can either be "summary", "summary_large_image", "app", or "player" -->
-    <meta name="twitter:card" value="summary">
-    <!-- END OG tags -->
 
+    <!-- END OG tags -->
     <!-- END Twitter tags -->
-    {#    <meta name="twitter:card" content="summary_large_image">#}
-    {#    <meta name="twitter:site" content="@publisher_handle">#}
-    {#    <meta name="twitter:creator" content="@author_handle">#}
-    {#    <meta name="twitter:title" content="Title of Article">#}
-    {#    <meta name="twitter:description" content="This article is about...">#}
-    {#    <meta name="twitter:image" content="https://...image.jpg">#}
-    {#    <meta name="twitter:image:alt" content="This is a description of the image.">#}
+        <meta name="twitter:card" content="summary_large_image">
+{#        <meta name="twitter:site" content="@publisher_handle">#}
+{#        <meta name="twitter:creator" content="@author_handle">#}
+        <meta name="twitter:title" content="About | RM Blog">
+        <meta name="twitter:description" content="RM Blog | A blog about Programming and technology.">
+        <meta name="twitter:image" content="{% static 'assets/images/blog/rm-blog.jpg' %}">
+        <meta name="twitter:image:alt" content="RM Blog | A blog about Programming and technology.">
     <!-- END Twitter tags -->
 {% endblock %}
 
@@ -44,16 +43,16 @@
             <div class="py-5 my-3">
                 <div class="row g-4 justify-content-center text-center">
                     <div class="col-lg-6 image-grid-1">
-                        <img class="w-100 h-auto rounded" src="" alt="" width="620"
+                        <img class="w-100 h-auto rounded" src="{% static 'assets/images/about/about-02.jpg' %}" alt="" width="620"
                              height="346">
                     </div>
 
                     <div class="col-lg-3 col-6 image-grid-2">
-                        <img class="img-fluid rounded" src="" alt="" width="460" height="515">
+                        <img class="img-fluid rounded" src="{% static 'assets/images/about/about-01.jpg' %}" alt="" width="460" height="515">
                     </div>
 
                     <div class="col-lg-3 col-6 image-grid-3">
-                        <img class="img-fluid rounded" src="" alt="" width="460" height="444">
+                        <img class="img-fluid rounded" src="{% static 'assets/images/about/about-03.jpg' %}" alt="" width="460" height="444">
                     </div>
                 </div>
             </div>

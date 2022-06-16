@@ -7,12 +7,12 @@
                 <div class="post-image position-relative">
                     {% if post.image %}
                         <img class="w-100 h-auto rounded" src="{{ post.image.url }}"
-                             alt="Creating an object that travels at 1% the speed of light?" width="970"
+                             alt="{{ post.title }}" width="970"
                              height="500">
 
                     {% else %}
-                        <img class="w-100 h-auto rounded" src="{% static 'assets/images/blog/01.jpg' %}"
-                             alt="Creating an object that travels at 1% the speed of light?" width="970"
+                        <img class="w-100 h-auto rounded" src="{% static 'assets/images/blog/rm-blog.jpg' %}"
+                             alt="{{ post.title }}" width="970"
                              height="500">
                     {% endif %}
                 </div>

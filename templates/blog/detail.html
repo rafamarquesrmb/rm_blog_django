@@ -108,7 +108,7 @@
     {% if post.image %}
         <meta property="og:image" content="{{ post.image.url }}">
     {% else %}
-        <meta property="og:image" content="https://...image.jpg">
+        <meta property="og:image" content="{% static 'assets/images/blog/rm-blog.jpg' %}">
     {% endif %}
     <meta property="og:image:alt" content="{{ post.title }}">
     <meta property="og:url" content="{{ post.title }}">
@@ -125,7 +125,7 @@
     {% if post.image %}
         <meta name="twitter:image" content="{{ post.image.url }}">
     {% else %}
-        <meta name="twitter:image" content="https://...image.jpg">
+        <meta name="twitter:image" content="{% static 'assets/images/blog/rm-blog.jpg' %}g">
 
     {% endif %}
     <meta name="twitter:image:alt" content="{{ post.title }}">
@@ -170,7 +170,7 @@
                                  alt="{{ post.title }}"
                                  width="970" height="500">
                         {% else %}
-                            <img class="w-100 h-auto rounded" src="{% static 'assets/images/blog/01.jpg' %}"
+                            <img class="w-100 h-auto rounded" src="{% static 'assets/images/blog/rm-blog.jpg' %}"
                                  alt="{{ post.title }}"
                                  width="970" height="500">
                         {% endif %}
