@@ -27,18 +27,17 @@ def subscribe(request):
         subscriber.unsubscribe_key = new_key
         try:
             subscriber.save()
-            # Send 'thanks' email
-            messages.success(request, "Congratulations! You have been registered in our newsletter! Follow your email to receive the news!")
+            # TODO: SEND EMAILS 'ASYNC'
+            messages.success(request,
+                             "Congratulations! You have been registered in our newsletter! Follow your email to receive the news!")
         except:
             messages.error(request, "Sorry... There was an error in the request. Please try again.")
     return redirect(request.POST.get('next', '/'))
 
 
-
-
 def unsubscribe(request):
     if request.method == 'POST':
-        key = request.POST.get("key")
+        key = request.POST.get("unsubscribe_key")
         subscriber = NewsletterSubscriber.objects.filter(unsubscribe_key=key)
         if subscriber:
             try:
@@ -51,3 +50,8 @@ def unsubscribe(request):
         else:
             # go to another page
             pass
+    elif request.method == 'GET':
+        key = request.GET.get("unsubscribe_key")
+        subscriber = NewsletterSubscriber.objects.filter(unsubscribe_key=key)
+        # return render(request, 'newsletter/unsubscriber.html', context={"subscriber": subscriber})
+        return
