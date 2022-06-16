@@ -9,9 +9,9 @@ from core.email_service import send_contact_email
 from core.forms import MessageForm
 
 
-def frontpage(request):
-    posts = Post.objects.filter(status=Post.ACTIVE)[:3]
-    return render(request, 'core/frontpage.html', {'posts': posts})
+def homepage(request):
+    posts = Post.objects.filter(status=Post.ACTIVE)[:8]
+    return render(request, 'core/homepage.html', {'posts': posts})
 
 
 def about(request):

@@ -4,70 +4,91 @@
 
     <style>
         /*!
-          Theme: Tokyo-night-Dark
-          origin: https://github.com/enkia/tokyo-night-vscode-theme
-          Description: Original highlight.js style
-          Author: (c) Henri Vandersleyen <hvandersleyen@gmail.com>
-          License: see project LICENSE
-          Touched: 2022
-        */
-        .hljs {
+   Theme: Framer
+   Author: Framer (Maintained by Jesse Hoyos)
+   License: ~ MIT (or more permissive) [via base16-schemes-source]
+   Maintainer: @highlightjs/core-team
+   Version: 2021.09.0
+ */
+        pre code.hljs {
             display: block;
             overflow-x: auto;
-            padding: 1em;
-            border-radius: 6px;
+            padding: 1em
         }
 
-        .hljs-comment, .hljs-meta {
-            color: #565f89
-        }
-
-        .hljs-deletion, .hljs-doctag, .hljs-regexp, .hljs-selector-attr, .hljs-selector-class, .hljs-selector-id, .hljs-selector-pseudo, .hljs-tag, .hljs-template-tag, .hljs-variable.language_ {
-            color: #f7768e
-        }
-
-        .hljs-link, .hljs-literal, .hljs-number, .hljs-params, .hljs-template-variable, .hljs-type, .hljs-variable {
-            color: #ff9e64
-        }
-
-        .hljs-attribute, .hljs-built_in {
-            color: #e0af68
-        }
-
-        .hljs-keyword, .hljs-property, .hljs-subst, .hljs-title, .hljs-title.class_, .hljs-title.class_.inherited__, .hljs-title.function_ {
-            color: #7dcfff
-        }
-
-        .hljs-selector-tag {
-            color: #73daca
-        }
-
-        .hljs-addition, .hljs-bullet, .hljs-quote, .hljs-string, .hljs-symbol {
-            color: #9ece6a
-        }
-
-        .hljs-code, .hljs-formula, .hljs-section {
-            color: #7aa2f7
-        }
-
-        .hljs-attr, .hljs-char.escape_, .hljs-keyword, .hljs-name, .hljs-operator {
-            color: #bb9af7
-        }
-
-        .hljs-punctuation {
-            color: #c0caf5
+        code.hljs {
+            padding: 3px 5px
         }
 
         .hljs {
-            background: #1a1b26;
-            color: #9aa5ce
+            color: #d0d0d0;
+            background: #181818
         }
 
-        .hljs-emphasis {
-            font-style: italic
+        .hljs ::selection, .hljs::selection {
+            background-color: #464646;
+            color: #d0d0d0
+        }
+
+        .hljs-comment {
+            color: #747474
+        }
+
+        .hljs-tag {
+            color: #b9b9b9
+        }
+
+        .hljs-operator, .hljs-punctuation, .hljs-subst {
+            color: #d0d0d0
+        }
+
+        .hljs-operator {
+            opacity: .7
+        }
+
+        .hljs-bullet, .hljs-deletion, .hljs-name, .hljs-selector-tag, .hljs-template-variable, .hljs-variable {
+            color: #fd886b
+        }
+
+        .hljs-attr, .hljs-link, .hljs-literal, .hljs-number, .hljs-symbol, .hljs-variable.constant_ {
+            color: #fc4769
+        }
+
+        .hljs-class .hljs-title, .hljs-title, .hljs-title.class_ {
+            color: #fecb6e
         }
 
         .hljs-strong {
+            font-weight: 700;
+            color: #fecb6e
+        }
+
+        .hljs-addition, .hljs-code, .hljs-string, .hljs-title.class_.inherited__ {
+            color: #32ccdc
+        }
+
+        .hljs-built_in, .hljs-doctag, .hljs-keyword.hljs-atrule, .hljs-quote, .hljs-regexp {
+            color: #acddfd
+        }
+
+        .hljs-attribute, .hljs-function .hljs-title, .hljs-section, .hljs-title.function_, .ruby .hljs-property {
+            color: #20bcfc
+        }
+
+        .diff .hljs-meta, .hljs-keyword, .hljs-template-tag, .hljs-type {
+            color: #ba8cfc
+        }
+
+        .hljs-emphasis {
+            color: #ba8cfc;
+            font-style: italic
+        }
+
+        .hljs-meta, .hljs-meta .hljs-keyword, .hljs-meta .hljs-string {
+            color: #b15f4a
+        }
+
+        .hljs-meta .hljs-keyword, .hljs-meta-keyword {
             font-weight: 700
         }
     </style>
@@ -77,42 +98,159 @@
     {{ post.title }}
 {% endblock %}
 {% block meta %}{{ post.meta_description }}{% endblock %}
+
+{% block seotags %}
+    <!-- OG tags -->
+    <meta property="og:title" content="{{ post.title }} | RM Blog">
+    <meta name="description" property="og:description" content="{{ post.meta_description }}">
+    <!-- The common types are website, article, blog, company, and image -->
+    <meta property="og:type" content="article">
+    {% if post.image %}
+        <meta property="og:image" content="{{ post.image.url }}">
+    {% else %}
+        <meta property="og:image" content="https://...image.jpg">
+    {% endif %}
+    <meta property="og:image:alt" content="{{ post.title }}">
+    <meta property="og:url" content="{{ post.title }}">
+
+    <!-- END OG tags -->
+
+    <!-- END Twitter tags -->
+    <!-- The Twitter card meta tag determines the type of card Twitter uses to display your link. The value can either be "summary", "summary_large_image", "app", or "player" -->
+    <meta name="twitter:card" content="summary_large_image">
+    {#        <meta name="twitter:site" content="@publisher_handle">#}
+    {#        <meta name="twitter:creator" content="@author_handle">#}
+    <meta name="twitter:title" content="{{ post.title }}">
+    <meta name="twitter:description" content="{{ post.meta_description }}">
+    {% if post.image %}
+        <meta name="twitter:image" content="{{ post.image.url }}">
+    {% else %}
+        <meta name="twitter:image" content="https://...image.jpg">
+
+    {% endif %}
+    <meta name="twitter:image:alt" content="{{ post.title }}">
+
+    <!-- END Twitter tags -->
+{% endblock %}
+
+
 {% block content %}
 
-<!-- Page Header-->
-{% if post.image %}
-<header class="masthead" style="background-image: url('{{ post.image.url }}')">
-{% else %}
-<header class="masthead" style="background-image: url('{% static 'assets/img/home-bg.jpg' %}')">
-{% endif %}
+    <section class="section-sm pb-0">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="mb-5">
+                        <h3 class="h1 mb-4 post-title">{{ post.title }}</h3>
 
-    <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="post-heading">
-                    <h1>{{ post.title }}</h1>
-                    <h2 class="subheading">{{ post.intro }}</h2>
-                    <span class="meta">
-                        Posted on {{ post.created_at| date }} | Category: <a
-                        href="{% url 'category_detail' post.category.slug %}">{{ post.category.title }}</a>
-                    </span>
+                        <ul class="card-meta list-inline mb-2">
+                            <li class="list-inline-item mt-2">
+                                <a href="{% url 'category_detail' post.category.slug %}" class="card-meta-author"
+                                   title="Read all posts by - Thomas Macaulay">
+                                    Category: <span>{{ post.category.title }}</span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item mt-2">—</li>
+                            <li class="list-inline-item mt-2">
+                                <i class="ti ti-clock"></i>
+                                <span>02 min read</span>
+                            </li>
+                            <li class="list-inline-item mt-2">—</li>
+                            <li class="list-inline-item mt-2">
+                                <i class="ti ti-calendar-event"></i>
+                                <span>{{ post.created_at| date }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="mb-5 text-center">
+                        {% if post.image %}
+                            <img class="w-100 h-auto rounded" src="{{ post.image.url }}"
+                                 alt="{{ post.title }}"
+                                 width="970" height="500">
+                        {% else %}
+                            <img class="w-100 h-auto rounded" src="{% static 'assets/images/blog/01.jpg' %}"
+                                 alt="{{ post.title }}"
+                                 width="970" height="500">
+                        {% endif %}
+
+                    </div>
+                </div>
+                <div class="col-lg-2 post-share-block order-1 order-lg-0 mt-5 mt-lg-0">
+                    <div class="position-sticky" style="top:150px">
+                        <span class="d-inline-block mb-3 small">SHARE</span>
+                        <ul class="social-share icon-box">
+                            <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return tbs_click()"><i
+                                    class="ti ti-brand-twitter"></i></li>
+                            <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return fbs_click()"><i
+                                    class="ti ti-brand-facebook"></i></li>
+                            <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return ins_click()"><i
+                                    class="ti ti-brand-linkedin"></i></li>
+                            <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return red_click()"><i
+                                    class="ti ti-brand-reddit"></i></li>
+                            <li class="d-inline-block d-lg-block me-2 mb-2" onclick="return pin_click()"><i
+                                    class="ti ti-brand-pinterest"></i></li>
+                        </ul>
+                    </div>
+                    <script type="text/javascript">
+                        var pageLink = window.location.href;
+                        var pageTitle = String(document.title).replace(/\&/g, '%26').replace('|', '%7c');
+
+                        function tbs_click() {
+                            pageLink = 'https://twitter.com/intent/tweet?text=' + pageTitle + '&url=' + pageLink;
+                            socialWindow(pageLink, 570, 570);
+                        }
+
+                        function fbs_click() {
+                            pageLink = 'https://www.facebook.com/sharer.php?u=' + pageLink + '&quote=' + pageTitle;
+                            socialWindow(pageLink, 570, 570);
+                        }
+
+                        function ins_click() {
+                            pageLink = 'https://www.linkedin.com/sharing/share-offsite/?url=' + pageLink;
+                            socialWindow(pageLink, 570, 570);
+                        }
+
+                        function red_click() {
+                            pageLink = 'https://www.reddit.com/submit?url=' + pageLink;
+                            socialWindow(pageLink, 570, 570);
+                        }
+
+                        function pin_click() {
+                            pageLink = 'https://www.pinterest.com/pin/create/button/?&text=' + pageTitle + '&url=' + pageLink + '&description=' + pageTitle;
+                            socialWindow(pageLink, 570, 570);
+                        }
+
+                        function socialWindow(pageLink, width, height) {
+                            var left = (screen.width - width) / 2;
+                            var top = (screen.height - height) / 2;
+                            var params = "menubar=no,toolbar=no,status=no,width=" + width + ",height=" + height + ",top=" + top + ",left=" + left;
+                            window.open(pageLink, "", params);
+                        }
+                    </script>
+                </div>
+                <div class="col-lg-8 post-content-block order-0 order-lg-2">
+                    <div class="content">
+                        {{ post.body | safe }}
+                    </div>
+
+                    <ul class="post-meta-tag list-unstyled list-inline mt-5">
+                        {% if post.tags.all.count > 0 %}
+                            <li class="list-inline-item">Tags:</li>
+                            {% for tag in post.tags.all %}
+                                <li class="list-inline-item"><a class="bg-white"
+                                                                href="{% url 'tag_detail' tag.slug %}">{{ tag.title }}</a>
+                                </li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
+
+
         </div>
-    </div>
-</header>
-<!-- Post Content-->
-<main>
-    <article class="mb-4">
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    {{ post.body | safe }}
-                </div>
-            </div>
-        </div>
-    </article>
-</main>
+    </section>
 
 
 
@@ -120,12 +258,12 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        document.querySelectorAll('pre').forEach((el) => {
-            hljs.highlightElement(el);
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre').forEach((el) => {
+                hljs.highlightElement(el);
+            });
         });
-    });
-</script>
+    </script>
 {% endblock %}

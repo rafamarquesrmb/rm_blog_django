@@ -1,38 +1,97 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block title %}
-About
+    About
 {% endblock %}
 {% block meta %}Página Sobre{% endblock %}
+
+{% block seotags %}
+    <!-- OG tags -->
+    <meta property="og:title" content="RM Blog">
+    <meta name="description" property="og:description" content="A blog about Programming and technology.">
+    <!-- The common types are website, article, blog, company, and image -->
+    <meta property="og:type" content="blog">
+    <!--    <meta property="og:image" content="https://...image.jpg"> -->
+    <!--    <meta property="og:image:alt" content="A picture of the mountains."> -->
+    <!--    <meta property="og:url" content="This is a description of the image."> -->
+    <!-- The Twitter card meta tag determines the type of card Twitter uses to display your link. The value can either be "summary", "summary_large_image", "app", or "player" -->
+    <meta name="twitter:card" value="summary">
+    <!-- END OG tags -->
+
+    <!-- END Twitter tags -->
+    {#    <meta name="twitter:card" content="summary_large_image">#}
+    {#    <meta name="twitter:site" content="@publisher_handle">#}
+    {#    <meta name="twitter:creator" content="@author_handle">#}
+    {#    <meta name="twitter:title" content="Title of Article">#}
+    {#    <meta name="twitter:description" content="This article is about...">#}
+    {#    <meta name="twitter:image" content="https://...image.jpg">#}
+    {#    <meta name="twitter:image:alt" content="This is a description of the image.">#}
+    <!-- END Twitter tags -->
+{% endblock %}
+
 {% block content %}
 
-<!-- Page Header-->
-        <header class="masthead" style="background-image: url('{% static 'assets/img/about-bg.jpg' %}')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="page-heading">
-                            <h1>About Me</h1>
-                            <span class="subheading">This is what I do.</span>
-                        </div>
+    {% include 'partials/page_header_partial.html' with page_title='About Me' %}
+
+    <section>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h2 class="text-dark mb-0">Hi, I'm Rafael Marques!<br>A software Engineer from Brazil</h2>
+                </div>
+            </div>
+
+            <div class="py-5 my-3">
+                <div class="row g-4 justify-content-center text-center">
+                    <div class="col-lg-6 image-grid-1">
+                        <img class="w-100 h-auto rounded" src="" alt="" width="620"
+                             height="346">
+                    </div>
+
+                    <div class="col-lg-3 col-6 image-grid-2">
+                        <img class="img-fluid rounded" src="" alt="" width="460" height="515">
+                    </div>
+
+                    <div class="col-lg-3 col-6 image-grid-3">
+                        <img class="img-fluid rounded" src="" alt="" width="460" height="444">
                     </div>
                 </div>
             </div>
-        </header>
-        <!-- Main Content-->
-        <main class="mb-4">
-            <div class="container px-4 px-lg-5">
 
-                {% include 'partials/alert_messages_partial.html' %}
-
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi beatae blanditiis
+                            cum cumque, ea, eius facere labore maiores minima nemo nisi nostrum odio officia possimus,
+                            quidem rem ullam voluptatum.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti dolorem, dolores dolorum
+                            itaque iure laudantium nam nobis omnis, perspiciatis possimus recusandae, tenetur vero
+                            voluptatum. Nostrum sapiente sit tenetur vel voluptate.</p>
                     </div>
                 </div>
             </div>
-        </main>
+
+            <div class="section-sm pb-0">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center">
+                        <h2 class="section-title">
+                            <span>Lorem Ipsum</span>
+                        </h2>
+                        <div class="content">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium animi beatae blanditiis
+                            cum cumque, ea, eius facere labore maiores minima nemo nisi nostrum odio officia possimus,
+                            quidem rem ullam voluptatum.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti dolorem, dolores dolorum
+                            itaque iure laudantium nam nobis omnis, perspiciatis possimus recusandae, tenetur vero
+                            voluptatum. Nostrum sapiente sit tenetur vel voluptate.</p>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
+
+

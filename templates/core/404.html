@@ -1,34 +1,48 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block title %}
-Not Found...
+    Not Found...
 {% endblock %}
 {% block meta %}Not Found...{% endblock %}
+{% block seotags %}
+    <!-- OG tags -->
+    <meta property="og:title" content="RM Blog">
+    <meta name="description" property="og:description" content="A blog about Programming and technology.">
+    <!-- The common types are website, article, blog, company, and image -->
+    <meta property="og:type" content="blog">
+    <!--    <meta property="og:image" content="https://...image.jpg"> -->
+    <!--    <meta property="og:image:alt" content="A picture of the mountains."> -->
+    <!--    <meta property="og:url" content="This is a description of the image."> -->
+    <!-- The Twitter card meta tag determines the type of card Twitter uses to display your link. The value can either be "summary", "summary_large_image", "app", or "player" -->
+    <meta name="twitter:card" value="summary">
+    <!-- END OG tags -->
+
+    <!-- END Twitter tags -->
+    {#    <meta name="twitter:card" content="summary_large_image">#}
+    {#    <meta name="twitter:site" content="@publisher_handle">#}
+    {#    <meta name="twitter:creator" content="@author_handle">#}
+    {#    <meta name="twitter:title" content="Title of Article">#}
+    {#    <meta name="twitter:description" content="This article is about...">#}
+    {#    <meta name="twitter:image" content="https://...image.jpg">#}
+    {#    <meta name="twitter:image:alt" content="This is a description of the image.">#}
+    <!-- END Twitter tags -->
+{% endblock %}
 
 {% block content %}
-<!-- Page Header-->
-        <header class="masthead" style="background-image: url('{% static 'assets/img/about-bg.jpg' %}')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="page-heading">
-                            <h1>404</h1>
-                            <span class="subheading">oops... Content Not Found</span>
-                        </div>
+
+
+    <section class="section-sm pb-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center">
+                        <h1 class="page-not-found-title">404</h1>
+                        <p class="mb-4">Oops. The page you're looking for doesn't exist.</p>
+                        <a href="{% url 'homepage' %}" class="btn btn-primary">Back to home</a>
                     </div>
                 </div>
             </div>
-        </header>
-        <!-- Main Content-->
-        <main class="mb-4">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <h1>Sorry... Content not found</h1>
-                        <a href="{% url 'frontpage' %}">Go to home...</a>
-                    </div>
-                </div>
-            </div>
-        </main>
+        </div>
+    </section>
 
 {% endblock %}
