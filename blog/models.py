@@ -37,7 +37,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=COICHES_STATUS, default=ACTIVE)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
-    tags = models.ManyToManyField("Tag", related_name="posts")
+    tags = models.ManyToManyField("Tag", related_name="posts", blank=True, null=True)
     
     class Meta:
         ordering = ('-created_at',)

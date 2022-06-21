@@ -38,8 +38,13 @@
                             <li class="nav-item @@about">
                                 <a class="nav-link" href="{% url 'about' %}">About</a>
                             </li>
-                            <li class="nav-item @@blog">
-                                <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+                            <li class="nav-item @@blog dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="{% url 'blog' %}">Blog</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="{% url 'blog' %}">All Posts</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'all_categories' %}">Categories</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'all_tags' %}">Tags</a></li>
+                                </ul>
                             </li>
                             <li class="nav-item @@contact">
                                 <a class="nav-link" href="{% url 'contact' %}">Contact</a>

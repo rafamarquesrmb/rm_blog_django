@@ -146,14 +146,10 @@
                         <ul class="card-meta list-inline mb-2">
                             <li class="list-inline-item mt-2">
                                 <a href="{% url 'category_detail' post.category.slug %}" class="card-meta-author"
-                                   title="Read all posts by - Thomas Macaulay">
-                                    Category: <span>{{ post.category.title }}</span>
+                                   title="{{ post.category.title }}">
+
+                                    <i class="ti ti-tag"></i> Category: <span>{{ post.category.title }}</span>
                                 </a>
-                            </li>
-                            <li class="list-inline-item mt-2">—</li>
-                            <li class="list-inline-item mt-2">
-                                <i class="ti ti-clock"></i>
-                                <span>02 min read</span>
                             </li>
                             <li class="list-inline-item mt-2">—</li>
                             <li class="list-inline-item mt-2">

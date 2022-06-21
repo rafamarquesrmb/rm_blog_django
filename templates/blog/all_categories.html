@@ -1,0 +1,66 @@
+{% extends 'core/base.html' %}
+{% block title %}
+    {{ page_title }}
+{% endblock %}
+{% block meta %}{{ page_metatitle }}{% endblock %}
+
+{% block seotags %}
+    <!-- OG tags -->
+    <meta property="og:title" content="{{ page_title }} | RM Blog">
+    <meta name="description" property="og:description" content="{{ page_metatitle }}">
+    <!-- The common types are website, article, blog, company, and image -->
+    <meta property="og:type" content="blog">
+    <!--    <meta property="og:image" content="https://...image.jpg"> -->
+    <!--    <meta property="og:image:alt" content="A picture of the mountains."> -->
+    <!--    <meta property="og:url" content="This is a description of the image."> -->
+    <!-- The Twitter card meta tag determines the type of card Twitter uses to display your link. The value can either be "summary", "summary_large_image", "app", or "player" -->
+    <meta name="twitter:card" value="summary">
+    <!-- END OG tags -->
+
+    <!-- END Twitter tags -->
+    {#    <meta name="twitter:card" content="summary_large_image">#}
+    {#    <meta name="twitter:site" content="@publisher_handle">#}
+    {#    <meta name="twitter:creator" content="@author_handle">#}
+    <meta name="twitter:title" content="{{ page_title }} | RM Blog">
+    <meta name="twitter:description" content="{{ page_metatitle }}">
+    {#    <meta name="twitter:image" content="https://...image.jpg">#}
+    {#    <meta name="twitter:image:alt" content="This is a description of the image.">#}
+    <!-- END Twitter tags -->
+{% endblock %}
+
+{% block content %}
+
+
+
+    {% include 'partials/page_header_partial.html' %}
+
+    <section>
+        <div class="container">
+            <div class="row g-4 justify-content-center text-center">
+
+                {% for category in categories %}
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                        <a class="p-4 rounded single-card d-block" href="{% url 'category_detail' category.slug %}">
+                            <span class="h4 mt-2 mb-2 d-block">{{ category.title }}</span>
+                        </a>
+                    </div>
+                {% empty %}
+                    <div class="content">
+                        <h2>Sorry...We don't find any tag</h2>
+                    </div>
+                {% endfor %}
+
+                <div class="col-12 text-center">
+                    <a class="btn btn-primary mt-5" href="{% url 'blog' %}" aria-label="View all posts">View all posts</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}
+
+
+

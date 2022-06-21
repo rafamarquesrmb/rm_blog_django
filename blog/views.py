@@ -14,9 +14,6 @@ def blog(request):
     context = {
         'page_title': 'Blog',
         'page_metatitle': 'A blog about Programming and technology.',
-        'banner_background_image_slug': 'assets/img/home-bg.jpg',
-        'banner_heading': 'RM Blog',
-        'banner_subheading': 'A blog about Programming and technology.',
         'posts': posts_paginated,
     }
     return render(request, 'blog/posts.html', context)
@@ -37,19 +34,36 @@ def detail(request, category_slug, slug):
     return render(request, 'blog/detail.html', {'post': post, 'form': form})
 
 
+def all_categories(request):
+    categories = Category.objects.all()
+    context = {
+        'page_title': f'All categories',
+        'page_metatitle': 'categories',
+        'categories': categories,
+    }
+    return render(request, 'blog/all_categories.html', context)
+
+
 def category(request, slug):
     category_selected = get_object_or_404(Category, slug=slug)
     posts = category_selected.posts.filter(status=Post.ACTIVE)
     posts_paginated = pagination(request, posts)
     context = {
-        'page_title': f'Tag: {category_selected.title}',
+        'page_title': f'Category: {category_selected.title}',
         'page_metatitle': category_selected.meta_description,
-        'banner_background_image_slug': 'assets/img/home-bg.jpg',
-        'banner_heading': category_selected.title,
-        'banner_subheading': f'Showing all posts of the "{category_selected.title}" tag',
         'posts': posts_paginated,
     }
     return render(request, 'blog/posts.html', context)
+
+
+def all_tags(request):
+    tags = Tag.objects.all()
+    context = {
+        'page_title': f'All Tags',
+        'page_metatitle': 'Tags',
+        'tags': tags,
+    }
+    return render(request, 'blog/all_tags.html', context)
 
 
 def tags(request, slug):
@@ -57,11 +71,8 @@ def tags(request, slug):
     posts = tag_selected.posts.filter(status=Post.ACTIVE)
     posts_paginated = pagination(request, posts)
     context = {
-        'page_title': f'Tag: {tag_selected.title}',
+        'page_title': f'Tag: #{tag_selected.title}',
         'page_metatitle': tag_selected.meta_description,
-        'banner_background_image_slug': 'assets/img/home-bg.jpg',
-        'banner_heading': tag_selected.title,
-        'banner_subheading': f'Showing all posts of the "{tag_selected.title}" tag',
         'posts': posts_paginated,
     }
     return render(request, 'blog/posts.html', context)
@@ -76,9 +87,6 @@ def search(request):
     context = {
         'page_title': 'Search Results',
         'page_metatitle': 'Meta Description',
-        'banner_background_image_slug': 'assets/img/home-bg.jpg',
-        'banner_heading': 'Search Results',
-        'banner_subheading': subheading,
         'posts': posts_paginated,
     }
     return render(request, 'blog/posts.html', context)
@@ -88,7 +96,7 @@ def search(request):
 def pagination(request, posts):
     # SETTINGS:
     default_page = 1
-    default_limit = 2
+    default_limit = 10
 
     page = request.GET.get('page', f'{default_page}')
     page_limit = request.GET.get('limit', f'{default_limit}')
