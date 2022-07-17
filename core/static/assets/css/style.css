@@ -1,21 +1,22 @@
 @charset "UTF-8";
 :root {
-    --blue-dark:  #1d2731;
-    --blue-medium:  #0B3C5D;
-    --blue-light:  #328CC1;
-    
+    --blue-dark: #1d2731;
+    --blue-medium: #0B3C5D;
+    --blue-light: #328CC1;
+
     --gold-light: #D9B310;
 
     --white-dark: #C9C9C9;
     --white-medium: #E6E6E6;
-    --white-light: #FFFFFF;    
+    --white-light: #FFFFFF;
 }
 
 .h1,
 h1 {
     font-size: 64px
 }
-h1.logo{
+
+h1.logo {
     font-size: 35px;
     line-height: 35px;
     font-weight: 900;
@@ -23,13 +24,16 @@ h1.logo{
     font-family: "Work Sans", serif, Courier, monospace;
     transition: .3s;
 }
-h1.logo:hover{
+
+h1.logo:hover {
     color: var(--white-light);
 }
-img.logo{
+
+img.logo {
     max-height: 35px;
 }
-@media (max-width:1399px) {
+
+@media (max-width: 1399px) {
 
     .h1,
     h1 {
@@ -37,7 +41,7 @@ img.logo{
     }
 }
 
-@media (max-width:991px) {
+@media (max-width: 991px) {
 
     .h1,
     h1 {
@@ -45,7 +49,7 @@ img.logo{
     }
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
 
     .h1,
     h1 {
@@ -58,7 +62,7 @@ h2 {
     font-size: 38px
 }
 
-@media (max-width:991px) {
+@media (max-width: 991px) {
 
     .h2,
     h2 {
@@ -66,7 +70,7 @@ h2 {
     }
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
 
     .h2,
     h2 {
@@ -79,7 +83,7 @@ h3 {
     font-size: 30px
 }
 
-@media (max-width:991px) {
+@media (max-width: 991px) {
 
     .h3,
     h3 {
@@ -87,7 +91,7 @@ h3 {
     }
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
 
     .h3,
     h3 {
@@ -100,7 +104,7 @@ h4 {
     font-size: 24px
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
 
     .h4,
     h4 {
@@ -165,7 +169,7 @@ body {
     line-height: 1.65
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     body {
         font-size: 15px
     }
@@ -195,7 +199,7 @@ p {
     padding: 120px 0
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .section {
         padding: 100px 0
     }
@@ -205,7 +209,7 @@ p {
     padding: 90px 0
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .section-sm {
         padding: 80px 0
     }
@@ -216,7 +220,7 @@ p {
     margin-bottom: 80px
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .section-title {
         margin-bottom: 55px
     }
@@ -230,7 +234,7 @@ p {
     padding: 0 12px
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .section-title span {
         background-size: 180px
     }
@@ -246,7 +250,7 @@ p {
     overflow: hidden
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .btn {
         font-size: 15px;
         padding: 11px 22px
@@ -271,7 +275,7 @@ p {
     padding: 14px 34px
 }
 
-@media (max-width:1199px) {
+@media (max-width: 1199px) {
     .btn.btn-lg {
         padding: 12px 28px
     }
@@ -424,7 +428,7 @@ p {
     grid-gap: 20px
 }
 
-@media (max-width:991px) {
+@media (max-width: 991px) {
     .content .gallery {
         grid-template-columns: repeat(2, auto)
     }
@@ -487,7 +491,7 @@ p {
     background-color: var(--white-medium)
 }
 
-.content table>:not(:first-child) {
+.content table > :not(:first-child) {
     border-top: 2px solid #ddd
 }
 
@@ -540,7 +544,7 @@ p {
     color: var(--white-light)
 }
 
-@media (max-width:575px) {
+@media (max-width: 575px) {
     .content blockquote {
         padding-left: 30px;
         padding-top: 80px
@@ -637,7 +641,7 @@ p {
 .breadcrumb-menu {
     display: inline-block;
     margin-top: 10px;
-    
+
 }
 
 .breadcrumb-menu li:last-child a {
@@ -667,7 +671,7 @@ p {
     border-color: var(--blue-light)
 }
 
-.form-control:focus~.input-group-append .input-group-text {
+.form-control:focus ~ .input-group-append .input-group-text {
     border-color: var(--blue-light)
 }
 
@@ -763,7 +767,7 @@ footer .section-title {
     margin-top: -7px
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     footer .section-title {
         margin-top: -3px
     }
@@ -812,7 +816,7 @@ h1.page-not-found-title {
     height: 110px
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .header-height-fix {
         height: 90px
     }
@@ -831,7 +835,7 @@ header {
     backdrop-filter: blur(16px)
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     header {
         padding: 30px 0
     }
@@ -876,7 +880,7 @@ header .nav-item.dropdown .nav-link::after {
     transition: 0s
 }
 
-@media (max-width:991px) {
+@media (max-width: 991px) {
     header .nav-item.dropdown .nav-link::after {
         position: static;
         margin-left: 8px;
@@ -894,13 +898,13 @@ header .nav-item:hover .nav-link {
     color: var(--blue-light) !important
 }
 
-@media (min-width:991px) {
+@media (min-width: 991px) {
     header .nav-item.dropdown .nav-link.dropdown-toggle {
         padding-right: 35px !important
     }
 }
 
-@media (min-width:991px) {
+@media (min-width: 991px) {
     header .dropdown-menu {
         display: block;
         opacity: 0;
@@ -931,9 +935,16 @@ header .dropdown-menu[data-bs-popper] {
 }
 
 header .dropdown-item {
-    color: var(--white-medium);
     font-size: 16px;
     padding: 7px 14px
+}
+
+@media screen and (max-width: 992px) {
+    header .dropdown-item {
+        color: var(--white-medium);
+        font-size: 16px;
+        padding: 7px 14px
+    }
 }
 
 header .dropdown-item.active,
@@ -976,7 +987,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     display: inline-block
 }
 
-@media (max-width:991px) {
+@media (max-width: 991px) {
     header .navbar-nav {
         width: 100%;
         text-align: center;
@@ -1010,22 +1021,24 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     border-bottom-left-radius: 0 !important;
     border-top-left-radius: 0 !important;
 }
-.search-input{
+
+.search-input {
     border-right: 0 !important;
     border-bottom-right-radius: 0 !important;
     border-top-right-radius: 0 !important;
 }
+
 .search-toggle span {
     vertical-align: middle
 }
 
-@media (max-width:575px) {
+@media (max-width: 575px) {
     .search-toggle span {
         display: none
     }
 }
 
-@media (max-width:575px) {
+@media (max-width: 575px) {
     .search-toggle {
         padding: 0 15px
     }
@@ -1058,7 +1071,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     transform: translateY(0)
 }
 
-@media (max-width:575px) {
+@media (max-width: 575px) {
     .search-block {
         padding: 25px 30px
     }
@@ -1087,7 +1100,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     color: var(--white-medium);
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .search-block input {
         font-size: 16px
     }
@@ -1109,7 +1122,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     right: 45px;
 }
 
-@media (max-width:575px) {
+@media (max-width: 575px) {
     .search-block [data-toggle=search-close] {
         right: 25px;
         top: 15px
@@ -1146,7 +1159,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     opacity: .8
 }
 
-@media (max-width:575px) {
+@media (max-width: 575px) {
     .search-results a {
         margin-bottom: 15px
     }
@@ -1162,7 +1175,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     }
 }
 
-@media (max-width:400px) {
+@media (max-width: 400px) {
     .search-results .search-result-card {
         width: 100%
     }
@@ -1172,7 +1185,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     padding-bottom: 130px
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .banner {
         padding-bottom: 110px
     }
@@ -1191,7 +1204,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     margin-top: 50px
 }
 
-@media (max-width:991px) {
+@media (max-width: 991px) {
     .image-grid-2 img {
         margin-top: 0
     }
@@ -1201,7 +1214,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     margin-top: 10px
 }
 
-@media (max-width:991px) {
+@media (max-width: 991px) {
     .image-grid-3 img {
         margin-top: 0
     }
@@ -1211,7 +1224,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     padding: 0 30px
 }
 
-@media (max-width:575px) {
+@media (max-width: 575px) {
     .card.post-card {
         padding: 0 10px
     }
@@ -1234,7 +1247,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     margin-bottom: 50px
 }
 
-@media (max-width:575px) {
+@media (max-width: 575px) {
     .card.post-card .post-image {
         margin-bottom: 30px
     }
@@ -1258,7 +1271,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     transition: .3s
 }
 
-@media (max-width:575px) {
+@media (max-width: 575px) {
     .card.post-card .post-image::before {
         bottom: -10px;
         left: -10px;
@@ -1271,7 +1284,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     filter: grayscale(0)
 }
 
-@media (max-width:575px) {
+@media (max-width: 575px) {
     .card.post-card:hover .post-image img {
         transform: translateY(0)
     }
@@ -1286,18 +1299,18 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     transition: .3s
 }
 
-.card-meta>li {
+.card-meta > li {
     line-height: 1;
     vertical-align: middle
 }
 
-.card-meta>li i {
+.card-meta > li i {
     font-size: 20px;
     vertical-align: bottom
 }
 
-@media (max-width:767px) {
-    .card-meta>li i {
+@media (max-width: 767px) {
+    .card-meta > li i {
         font-size: 18px
     }
 }
@@ -1310,7 +1323,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     margin-right: 1rem
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .card-meta .list-inline-item:not(:last-child) {
         margin-right: .7rem
     }
@@ -1361,7 +1374,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     width: 174px
 }
 
-@media (max-width:991px) {
+@media (max-width: 991px) {
     .post-share-block {
         width: 100%
     }
@@ -1371,7 +1384,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     width: calc(83.33333334% - 174px)
 }
 
-@media (max-width:991px) {
+@media (max-width: 991px) {
     .post-content-block {
         width: 100%
     }
@@ -1419,7 +1432,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     font-size: 18px
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .archive-block .archive-post-item {
         font-size: 16px
     }
@@ -1433,13 +1446,13 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     margin: 0 20px
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .archive-block .archive-post-item span {
         display: none
     }
 }
 
-@media (max-width:767px) {
+@media (max-width: 767px) {
     .archive-block .archive-post-item a {
         display: block
     }
@@ -1463,7 +1476,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     margin-right: 12px
 }
 
-@media (max-width:575px) {
+@media (max-width: 575px) {
     .newsletter-block .form-control {
         margin-right: 0
     }
@@ -1478,7 +1491,7 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     border-color: var(--blue-light);
 }
 
-.newsletter-block .form-control:focus~.input-group-append .input-group-text {
+.newsletter-block .form-control:focus ~ .input-group-append .input-group-text {
     border-color: var(--blue-light);
     background-color: var(--blue-light);
     color: var(--white-medium)
@@ -1506,32 +1519,38 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
     color: var(--white-light)
 }
 
-.text-dark{
+.text-dark {
     color: var(--blue-light) !important;
 }
-.text-black{
+
+.text-black {
     color: var(--blue-light) !important;
 }
-.single-card{
+
+.single-card {
     color: var(--blue-medium);
     background-color: var(--white-medium);
     transition: .3s;
 }
-.single-card:hover{
+
+.single-card:hover {
     color: var(--blue-light);
     background-color: var(--white-light);
 }
-.email{
+
+.email {
     color: var(--white-light);
 }
+
 .email:focus,
-.email:hover{
+.email:hover {
     color: var(--white-light);
 }
-@media screen and (max-width: 992px){
-.navbar-collapse{
-    padding-bottom: 10px;
-    box-shadow: 0px 2px 0px rgb(255 255 255 / 20%);
-    transition: .4s;
-}
+
+@media screen and (max-width: 992px) {
+    .navbar-collapse {
+        padding-bottom: 10px;
+        box-shadow: 0px 2px 0px rgb(255 255 255 / 20%);
+        transition: .4s;
+    }
 }
