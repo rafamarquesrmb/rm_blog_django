@@ -1528,8 +1528,10 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
 .email:hover{
     color: var(--white-light);
 }
+@media screen and (max-width: 992px){
 .navbar-collapse{
     padding-bottom: 10px;
     box-shadow: 0px 2px 0px rgb(255 255 255 / 20%);
     transition: .4s;
+}
 }
