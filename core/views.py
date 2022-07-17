@@ -45,5 +45,5 @@ def contact(request):
     return render(request, 'core/contact.html', context)
 
 
-def error_404_view(request, exception):
-    return render(request, 'core/404.html')
+def custom_404(request,exception):
+    return render(request, 'core/404.html', {}, status=404)

@@ -24,3 +24,15 @@ All app administration must be done through django admin. The django admin is pr
 It has a contact page!
 
 <sub>by [Rafael Marques @rafamarquesrmb](https://github.com/rafamarquesrmb)</sub>
+
+## Instructions
+1. It should run initially
+    python manage.py migrate
+    
+2. Then Create the superuser:
+    python manage.py createsuperuser
+3. Then it should run:
+    python manage.py collectstatic 
+
+4. Finally, run the server:
+    python manage.py runserver
