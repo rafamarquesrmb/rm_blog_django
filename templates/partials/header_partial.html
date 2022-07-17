@@ -10,18 +10,6 @@
                         <!-- <img class="logo img-fluid" width="110" height="35" src="assets/images/logo.png" alt="Logo"> -->
                     </a>
 
-                    <button class="search-toggle d-inline-block d-lg-none ms-auto me-1 me-sm-3" data-toggle="search"
-                            aria-label="Search Toggle">
-                        <span>Search</span>
-                        <svg width="22" height="22" stroke-width="1.5" viewBox="0 0 24 24" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.5 15.5L19 19" stroke="currentColor" stroke-linecap="round"
-                                  stroke-linejoin="round"/>
-                            <path
-                                    d="M5 11C5 14.3137 7.68629 17 11 17C12.6597 17 14.1621 16.3261 15.2483 15.237C16.3308 14.1517 17 12.654 17 11C17 7.68629 14.3137 5 11 5C7.68629 5 5 7.68629 5 11Z"
-                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navHeader" aria-controls="navHeader" aria-expanded="false"
@@ -32,31 +20,14 @@
 
                     <div class="collapse navbar-collapse" id="navHeader">
                         <ul class="navbar-nav mx-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="{% url 'homepage' %}">Home</a>
-                            </li>
-                            <li class="nav-item @@about">
-                                <a class="nav-link" href="{% url 'about' %}">About</a>
-                            </li>
-                            <li class="nav-item @@blog dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="{% url 'blog' %}">Blog</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="{% url 'blog' %}">All Posts</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'all_categories' %}">Categories</a></li>
-                                        <li><a class="dropdown-item" href="{% url 'all_tags' %}">Tags</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item @@contact">
-                                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-                            </li>
-                        </ul>
-
-                        <div class="navbar-right d-none d-lg-inline-block">
-                            <ul class="social-links list-unstyled list-inline">
-                                <li class="list-inline-item ms-4 d-none d-lg-inline-block">
-                                    <button class="search-toggle" data-toggle="search" aria-label="Search Toggle">
-                                        <span>Search</span>
-                                        <svg width="22" height="22" stroke-width="1.5" viewBox="0 0 24 24"
+                            <li class="nav-item @@search">
+                                <form action="{% url 'search' %}" method="get" role="search"
+                                      class="d-flex nav-link col-12 col-lg-auto mt-3 mb-3 mb-lg-0 me-lg-3">
+                                    <input type="text" name="query" class="search-input form-control" placeholder="Search"
+                                           aria-label="Search"/>
+                                    <button class="search-toggle" data-toggle="search" aria-label="Search Toggle"
+                                            type="submit">
+                                        <svg width="32" height="50" stroke-width="1.5" viewBox="0 0 24 24"
                                              fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M15.5 15.5L19 19" stroke="currentColor" stroke-linecap="round"
                                                   stroke-linejoin="round"/>
@@ -66,6 +37,51 @@
                                                     stroke-linejoin="round"/>
                                         </svg>
                                     </button>
+
+                                </form>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'homepage' %}">Home</a>
+                            </li>
+                            <li class="nav-item @@about">
+                                <a class="nav-link" href="{% url 'about' %}">About</a>
+                            </li>
+                            <li class="nav-item @@blog dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                                   data-bs-toggle="dropdown" aria-expanded="false" href="{% url 'blog' %}">Blog</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{% url 'blog' %}">All Posts</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'all_categories' %}">Categories</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'all_tags' %}">Tags</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item @@contact">
+                                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                            </li>
+
+                        </ul>
+
+                        <div class="navbar-right d-none d-lg-inline-block">
+                            <ul class="social-links list-unstyled list-inline">
+                                <li class="list-inline-item ms-4 d-none d-lg-inline-block">
+                                    <form action="{% url 'search' %}" method="get" role="search"
+                                          class="d-flex col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                                        <input type="text" name="query" class="search-input form-control" placeholder="Search"
+                                               aria-label="Search"/>
+                                        <button class="search-toggle" data-toggle="search" aria-label="Search Toggle"
+                                                type="submit">
+                                            <svg width="32" height="50" stroke-width="1.5" viewBox="0 0 24 24"
+                                                 fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M15.5 15.5L19 19" stroke="currentColor" stroke-linecap="round"
+                                                      stroke-linejoin="round"/>
+                                                <path
+                                                        d="M5 11C5 14.3137 7.68629 17 11 17C12.6597 17 14.1621 16.3261 15.2483 15.237C16.3308 14.1517 17 12.654 17 11C17 7.68629 14.3137 5 11 5C7.68629 5 5 7.68629 5 11Z"
+                                                        stroke="currentColor" stroke-linecap="round"
+                                                        stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+
+                                    </form>
                                 </li>
                             </ul>
                         </div>
@@ -76,18 +92,3 @@
         </div>
     </div>
 </header>
-
-<div class="search-block">
-    <div data-toggle="search-close">
-        <span class="ti ti-x text-primary"></span>
-    </div>
-
-
-    <form action="{% url 'search' %}" method="get" class="search__form d-flex my-3 my-lg-0 input-group-sm"
-          role="search">
-        {% csrf_token %}
-        <input type="search"
-               class="search__input bg-white bg-opacity-25 text-primary border-end-0 form-control rounded-start"
-               name="query" placeholder="Search..." id="js-search-input" aria-label="search-query">
-    </form>
-</div>

@@ -87,6 +87,7 @@ def search(request):
     context = {
         'page_title': 'Search Results',
         'page_metatitle': 'Meta Description',
+        'subheading': subheading,
         'posts': posts_paginated,
     }
     return render(request, 'blog/posts.html', context)
@@ -96,7 +97,7 @@ def search(request):
 def pagination(request, posts):
     # SETTINGS:
     default_page = 1
-    default_limit = 10
+    default_limit = 2
 
     page = request.GET.get('page', f'{default_page}')
     page_limit = request.GET.get('limit', f'{default_limit}')

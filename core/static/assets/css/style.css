@@ -1000,14 +1000,20 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
 }
 
 .search-toggle {
-    background-color: transparent;
+    background-color: #328CC1;
     border: 0;
     color: var(--white-medium);
     transition: .3s ease;
-    padding: 0 15px 0 20px;
-    height: 42px
+    padding: 0 15px;
+    height: 50px;
+    border-bottom-left-radius: 0 !important;
+    border-top-left-radius: 0 !important;
 }
-
+.search-input{
+    border-right: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
 .search-toggle span {
     vertical-align: middle
 }
@@ -1520,4 +1526,9 @@ header .navbar-light .navbar-toggler.toggle-menu .menu-close {
 .email:focus,
 .email:hover{
     color: var(--white-light);
+}
+@media screen and (min-width: 992px){
+    #navHeader form{
+        display: none;
+    }
 }
