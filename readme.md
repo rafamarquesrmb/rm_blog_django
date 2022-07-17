@@ -11,7 +11,7 @@
 
 This project is a blog with integrated CMS, developed with Django Framework (4.0.5).
 
-You can see a demo of this project at: [RM Blog (rm-blog-django.herokuapp.com)](https://rm-blog-django.herokuapp.com/).
+You can see a demo of this project at: [RM Blog (https://rafamarquesrmb-rm-blog.herokuapp.com/)](https://rafamarquesrmb-rm-blog.herokuapp.com/).
 
 It consists of an MVT application with Posts, Categories and Tags.
 
