@@ -51,6 +51,7 @@ def category(request, slug):
     context = {
         'page_title': f'Category: {category_selected.title}',
         'page_metatitle': category_selected.meta_description,
+        'pagination_url': 'category',
         'posts': posts_paginated,
     }
     return render(request, 'blog/posts.html', context)
@@ -89,6 +90,7 @@ def search(request):
         'page_metatitle': 'Meta Description',
         'subheading': subheading,
         'posts': posts_paginated,
+        'query': query
     }
     return render(request, 'blog/posts.html', context)
 
@@ -97,7 +99,7 @@ def search(request):
 def pagination(request, posts):
     # SETTINGS:
     default_page = 1
-    default_limit = 2
+    default_limit = 10
 
     page = request.GET.get('page', f'{default_page}')
     page_limit = request.GET.get('limit', f'{default_limit}')

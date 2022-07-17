@@ -22,7 +22,7 @@
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item @@search">
                                 <form action="{% url 'search' %}" method="get" role="search"
-                                      class="d-flex nav-link col-12 col-lg-auto mt-3 mb-3 mb-lg-0 me-lg-3">
+                                      class="d-lg-none d-flex nav-link col-12 col-lg-auto mt-3 mb-3 mb-lg-0 me-lg-3">
                                     <input type="text" name="query" class="search-input form-control" placeholder="Search"
                                            aria-label="Search"/>
                                     <button class="search-toggle" data-toggle="search" aria-label="Search Toggle"
@@ -40,23 +40,23 @@
 
                                 </form>
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item {% if request.path == "/" %}active{% endif %}">
                                 <a class="nav-link" href="{% url 'homepage' %}">Home</a>
                             </li>
-                            <li class="nav-item @@about">
+                            <li class="nav-item {% if request.path == "/about/" %}active{% endif %}">
                                 <a class="nav-link" href="{% url 'about' %}">About</a>
                             </li>
-                            <li class="nav-item @@blog dropdown">
+                            <li class="nav-item {% if "blog/" in request.path %}active{% endif %} dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                    data-bs-toggle="dropdown" aria-expanded="false" href="{% url 'blog' %}">Blog</a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{% url 'blog' %}">All Posts</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'all_categories' %}">Categories</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'all_tags' %}">Tags</a></li>
+                                    <li><a class="dropdown-item {% if request.path == "/blog/" %}active{% endif %}" href="{% url 'blog' %}">All Posts</a></li>
+                                    <li><a class="dropdown-item {% if "/categories/" in request.path %}active{% endif %}" href="{% url 'all_categories' %}">Categories</a></li>
+                                    <li><a class="dropdown-item {% if "/tags/" in request.path %}active{% endif %}" href="{% url 'all_tags' %}">Tags</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item @@contact">
-                                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                            <li class="nav-item @@contact {% if request.path == "/contact/" %}active{% endif %}">
+                                <a class="nav-link " href="{% url 'contact' %}">Contact</a>
                             </li>
 
                         </ul>
@@ -65,7 +65,7 @@
                             <ul class="social-links list-unstyled list-inline">
                                 <li class="list-inline-item ms-4 d-none d-lg-inline-block">
                                     <form action="{% url 'search' %}" method="get" role="search"
-                                          class="d-flex col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                                          class="d-none d-lg-flex col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                                         <input type="text" name="query" class="search-input form-control" placeholder="Search"
                                                aria-label="Search"/>
                                         <button class="search-toggle" data-toggle="search" aria-label="Search Toggle"
