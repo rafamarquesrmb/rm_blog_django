@@ -1,58 +1,73 @@
 {% load static %}
 <div class="col-lg-6">
-    <article class="card post-card h-100 border-0 bg-transparent">
-        <div class="card-body">
-            <a class="d-block" href="{% url 'post_detail' post.category.slug post.slug %}"
-               title="{{ post.title }}">
-                <div class="post-image position-relative">
-                    {% if post.image %}
-                        <img class="w-100 h-auto rounded" src="{{ post.image.url }}"
-                             alt="{{ post.title }}" width="970"
-                             height="500">
+  <article class="card post-card h-100 border-0 bg-transparent">
+    <div class="card-body">
+      <a
+        class="d-block"
+        href="{% url 'post_detail' post.category.slug post.slug %}"
+        title="{{ post.title }}"
+      >
+        <div class="post-image position-relative">
+          {% if post.image %}
+          <img
+            class="w-100 h-auto rounded"
+            src="{{ post.image.url }}"
+            alt="{{ post.title }}"
+          />
 
-                    {% else %}
-                        <img class="w-100 h-auto rounded" src="{% static 'assets/images/blog/rm-blog.jpg' %}"
-                             alt="{{ post.title }}" width="970"
-                             height="500">
-                    {% endif %}
-                </div>
-            </a>
-            <ul class="card-meta list-inline mb-3">
-                <li class="list-inline-item mt-2">
-                    <i class="ti ti-calendar-event"></i>
-                    <span>{{ post.created_at | date }}</span>
-                </li>
-                <li class="list-inline-item mt-2">•</li>
-                <li class="list-inline-item mt-2">
-                    <i class="ti ti-tag"></i>
-                    <a href="{% url 'category_detail' post.category.slug %}" class="card-meta-author"
-                       title="Read all posts from '{{ post.category.title }}' category.">
-                        <span>{{ post.category.title }}</span>
-                    </a>
-
-                </li>
-            </ul>
-            <a class="d-block" href="{% url 'post_detail' post.category.slug post.slug %}"
-               title="{{ post.title }}">
-                <h3 class="mb-3 post-title">
-                    {{ post.title }}
-                </h3>
-            </a>
-            <p>{{ post.intro|striptags|slice:":85" }}...</p>
+          {% else %}
+          <img
+            class="w-100 h-auto rounded"
+            src="{% static 'assets/images/blog/rm-blog.jpg' %}"
+            alt="{{ post.title }}"
+          />
+          {% endif %}
         </div>
-        <div class="card-footer border-top-0 bg-transparent p-0">
-            <ul class="card-meta list-inline">
-                {% if post.tags.all.count > 0 %}
-                    <li class="list-inline-item mt-2">
-                        <ul class="card-meta-tag list-inline">
-                            {% for tag in post.tags.all %}
-                                <li class="list-inline-item small"><a
-                                        href="{% url 'tag_detail' tag.slug %}">#{{ tag.title }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-    </article>
+      </a>
+      <ul class="card-meta list-inline mb-3">
+        <li class="list-inline-item mt-2">
+          <i class="ti ti-calendar-event"></i>
+          <span>{{ post.created_at | date }}</span>
+        </li>
+        <li class="list-inline-item mt-2">•</li>
+        <li class="list-inline-item mt-2">
+          <i class="ti ti-tag"></i>
+          <a
+            href="{% url 'category_detail' post.category.slug %}"
+            class="card-meta-author"
+            title="Read all posts from '{{ post.category.title }}' category."
+          >
+            <span>{{ post.category.title }}</span>
+          </a>
+        </li>
+      </ul>
+      <a
+        class="d-block"
+        href="{% url 'post_detail' post.category.slug post.slug %}"
+        title="{{ post.title }}"
+      >
+        <h3 class="mb-3 post-title">{{ post.title }}</h3>
+        <p>
+          {{ post.intro|striptags|capfirst|slice:":85" }} {% if post.intro|length > 85 %}
+          <span>...</span>
+          {% endif %}
+        </span>
+      </a>
+    </div>
+    <div class="card-footer border-top-0 bg-transparent p-0">
+      <ul class="card-meta list-inline">
+        {% if post.tags.all.count > 0 %}
+        <li class="list-inline-item mt-2">
+          <ul class="card-meta-tag list-inline">
+            {% for tag in post.tags.all %}
+            <li class="list-inline-item small">
+              <a href="{% url 'tag_detail' tag.slug %}">#{{ tag.title }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </article>
 </div>
